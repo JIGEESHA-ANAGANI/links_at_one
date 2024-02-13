@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rating Feedback Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #d7cdcd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .rating {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        font-size: 30px;
+        color: #ddd;
+        cursor: pointer;
+    }
+
+    .rating label:hover,
+    .rating input:checked ~ label {
+        color: #f7d64f;
+    }
+
+    input[type="submit"],
+    input[type="button"] {
+        background-color: #d9bf29;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    input[type="submit"]:hover,
+    input[type="button"]:hover {
+        background-color: #45a049;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        background-color: rgba(240, 255, 255, 0.929);
+        border-radius: 4px;
+        box-sizing: border-box;
+        height: 150px;
+        resize: vertical;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Rating Feedback Form</h2>
+    <form action="#" method="post">
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">&#9733;</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">&#9733;</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">&#9733;</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">&#9733;</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">&#9733;</label>
+        </div>
+
+        <textarea id="opinion" name="opinion" placeholder="Enter your opinion"></textarea>
+        
+        <input type="submit" value="Submit">
+        <input type="button" value="Cancel" onclick="cancelFeedback()">
+    </form>
+</div>
+
+<script>
+    // JavaScript for setting the rating value
+    const ratings = document.querySelectorAll('.rating input');
+    let selectedRating;
+
+    ratings.forEach(rating => {
+        rating.addEventListener('click', () => {
+            selectedRating = rating.value;
+            console.log('Selected rating:', selectedRating);
+        });
+    });
+
+    function cancelFeedback() {
+        document.getElementById('opinion').value = '';
+        document.querySelectorAll('.rating input').forEach(radio => radio.checked = false);
+        selectedRating = undefined;
+    }
+</script>
+
+</body>
+</html>
